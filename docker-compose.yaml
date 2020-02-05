@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  server:
+    build: "./comparatorAPI/"
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - back-net
+    environment:
+      - DB_HOST=db
+      - PORT=8080
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    restart: always
+    networks:
+      - back-net
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - DB_PORT=5432
+      - PGUSER=postgres
+      - PGPASSWORD=password
+      - PGDATA=/var/lib/postgresql/data/comparator/
+
+  frontend:
+    build: "./frontend"
+    ports:
+      - "3000:3000"
+    networks:
+      - back-net
+
+networks:
+  back-net:
+    driver: bridge
+
+volumes:
+  db-data:
