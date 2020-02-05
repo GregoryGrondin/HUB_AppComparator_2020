@@ -3,6 +3,8 @@ Quick comparator for a hub project, backend using express and front with react
 
 ## Installations
 
+Install Postman : https://www.postman.com/downloads/
+
 Install nodejs : https://tecadmin.net/install-latest-nodejs-on-fedora/
 
 Install docker : https://docs.docker.com/install/linux/docker-ce/fedora/
